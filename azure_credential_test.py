@@ -19,7 +19,7 @@ try:
     print(f"Token expires on: {token.expires_on}")
     
     # Try to access a resource
-    client = SecretClient(vault_url="https://your-keyvault.vault.azure.net/", credential=credential)
+    client = SecretClient(vault_url="https://it-dplatf-dev-kv.vault.azure.net//", credential=credential)
     print("Authentication successful!")
     
 except Exception as e:
