@@ -19,8 +19,19 @@ try:
     print(f"Token expires on: {token.expires_on}")
     
     # Try to access a resource
-    client = SecretClient(vault_url="https://it-dplatf-dev-kv.vault.azure.net//", credential=credential)
+    key_vault_url = "https://it-dplatf-dev-kv.vault.azure.net/"
+    client = SecretClient(vault_url=key_vault_url, credential=credential)
     print("Authentication successful!")
+    
+    # Get the specific secret
+    secret_name = "dplatf-003-factory-source-cs-ora"
+    print(f"Retrieving secret: {secret_name}")
+    
+    secret = client.get_secret(secret_name)
+    print(f"Secret retrieved successfully!")
+    print(f"Secret name: {secret.name}")
+    print(f"Secret value: {secret.value[:5]}... (truncated for security)")
+    print(f"Secret properties: {secret.properties.tags}")
     
 except Exception as e:
     print(f"Authentication failed: {str(e)}")
